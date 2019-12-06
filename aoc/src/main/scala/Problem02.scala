@@ -2,7 +2,7 @@
 
   object Problem02 extends App {
     println(
-      (Vector(Vector(12, 2)) ++ ((0 to 100) ++ (0 to 100)).combinations(2)).map(v =>
+      (Vector(Vector(12, 2)) ++ ((0 to 99) ++ (0 to 99)).combinations(2)).map(v =>
         (
           v,
           Stream.from(0, 4).scanLeft(
