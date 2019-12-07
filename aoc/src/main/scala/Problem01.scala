@@ -8,7 +8,7 @@ object Problem01 extends App {
       .map(_.toInt)
       .toList
       .map(m =>
-        (m / 3) - 2 :: Stream.iterate(m)(_ / 3 - 2).drop(1).takeWhile(_ > 0).sum :: Nil
+        (m / 3) - 2 :: LazyList.iterate(m)(_ / 3 - 2).drop(1).takeWhile(_ > 0).sum :: Nil
       )
       .transpose
       .map(_.sum)

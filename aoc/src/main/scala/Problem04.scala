@@ -5,7 +5,7 @@ object Problem04 extends App {
     Some(scala.io.Source.fromResource("inputs/4.txt").getLines.next.split("-").map(_.toInt))
       .map(a =>
         (a(0) to a(1))
-          .map(_.toString.sliding(2).toList)
+          .map(_.toString.toList.sliding(2).toList)
           .filter(s => s.exists(p => p(0) == p(1)) && s.forall(p => p(0) <= p(1)))
           .foldLeft(List(0, 0))((l, s) =>
             l(0) + 1 ::

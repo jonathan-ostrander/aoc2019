@@ -13,7 +13,7 @@ object Problem06 extends App {
       .map(o => o.transform((k, v) => (v, o.filter(_._2.contains(k)).map(_._1).toList)))
       .map(o =>
         List(
-          Stream.iterate((List("COM" -> 0), 0))(l => 
+          LazyList.iterate((List("COM" -> 0), 0))(l => 
             l._1.headOption.map(t =>
               (l._1.tail ++ o.getOrElse(t._1, (None, Nil))._2.map(_ -> (t._2 + 1)), l._2 + t._2)
             ).get
@@ -21,7 +21,7 @@ object Problem06 extends App {
             .dropWhile(_._1.nonEmpty)
             .head
             ._2,
-          -2 + Stream.iterate((List("YOU" -> 0), Set.empty[String]))(l =>
+          -2 + LazyList.iterate((List("YOU" -> 0), Set.empty[String]))(l =>
             l._1.headOption.flatMap(t =>
               o.get(t._1).map(p =>
                 (l._1.tail ++ (p._1.toList ++ p._2).filterNot(l._2).map(_ -> (t._2 + 1)), l._2 + t._1)

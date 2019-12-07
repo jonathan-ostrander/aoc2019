@@ -3,7 +3,7 @@ package aoc
 object Problem05 extends App {
   println(
     List(1, 5).map(c =>
-      Stream.continually(c).scanLeft(
+      LazyList.continually(c).scanLeft(
         (
           scala.io.Source.fromResource("inputs/5.txt").getLines.next.split(",")
             .map(_.toInt)

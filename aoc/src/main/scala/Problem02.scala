@@ -5,7 +5,7 @@
       (Vector(Vector(12, 2)) ++ ((0 to 99) ++ (0 to 99)).combinations(2)).map(v =>
         (
           v,
-          Stream.from(0, 4).scanLeft(
+          LazyList.from(0, 4).scanLeft(
             (
               scala.io.Source.fromResource("inputs/2.txt")
                 .getLines
