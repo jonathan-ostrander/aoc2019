@@ -13,9 +13,9 @@ object Problem10 extends App {
             .zipWithIndex
             .flatMap(c => if (c._1 == '#') Some(l._2.toDouble -> c._2.toDouble) else None)
         )
-    ).map(as =>
-      as.map(a =>
-        as
+    ).map(androids =>
+      androids.map(a =>
+        androids
           .map(b => b -> Math.atan2(b._1 - a._1, b._2 - a._2))
           .groupBy(_._2)
           .transform((_, t) => t.map(_._1).sortBy(v => Math.pow(v._1 - a._1, 2) + Math.pow(v._2 - a._2, 2)))
