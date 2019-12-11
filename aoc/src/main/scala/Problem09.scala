@@ -9,7 +9,7 @@ object Problem09 extends App {
             .map(_.toLong)
             .zipWithIndex
             .map(t => t._2.toLong -> t._1)
-            .toMap,
+            .toMap.withDefaultValue(0L),
           0L,
           true,
           List.empty[Long],
@@ -18,9 +18,9 @@ object Problem09 extends App {
       )((a, input) =>
         Some("%05d".format(a._1(a._2)).zipWithIndex.map(_.swap).toMap).map(cm =>
           Some((m: Char) =>
-            if (m == '0') ((i: Long) => a._1.getOrElse(a._1.getOrElse(i, 0L), 0L), (i: Long) => a._1.getOrElse(i, 0L))
-            else if (m == '1') ((i: Long) => a._1.getOrElse(i, 0L), (i: Long) => i)
-            else if (m == '2') ((i: Long) => a._1.getOrElse(a._5 + a._1.getOrElse(i, 0L), 0L), (i: Long) => a._5 + a._1.getOrElse(i, 0L))
+            if (m == '0') ((i: Long) => a._1(a._1(i)), (i: Long) => a._1(i))
+            else if (m == '1') ((i: Long) => a._1(i), (i: Long) => i)
+            else if (m == '2') ((i: Long) => a._1(a._5 + a._1(i)), (i: Long) => a._5 + a._1(i))
             else sys.error("bad mode input")
           ).map(f => cm -> (0 to 2).map(i => f(cm(i)))).get
         ).map(t =>
